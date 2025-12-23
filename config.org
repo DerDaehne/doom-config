@@ -2,6 +2,7 @@
 
 * Table of content :toc:
 - [[#font-theme-and-visuals][font, theme and visuals]]
+  - [[#animations-cursor-and-scroll-settings-for-a-fresher-ui][animations, cursor and scroll settings for a fresher ui]]
 - [[#org-mode-configs][org mode configs]]
   - [[#font-configs][font configs]]
   - [[#settings-for-source-code-blocks][Settings for source code blocks.]]
@@ -33,8 +34,10 @@
  refresh your font settings. If Emacs still can't find your font, it likely
  wasn't installed correctly. Font issues are rarely Doom issues!
 
+ The font needs to be installed on your system: https://typeof.net/Iosevka/
+
 #+begin_src emacs-lisp
-(setq doom-font (font-spec :size 16 :family "Iosevka"))
+(setq doom-font (font-spec :size 18 :family "Iosevka"))
 (setq doom-theme 'doom-one)
 #+end_src
 
@@ -52,6 +55,30 @@ Possible values are:
 (setq display-line-numbers-type t)
 #+end_src
 
+** animations, cursor and scroll settings for a fresher ui
+
+emacs built-in version of smooth-scroll:
+#+begin_src emacs-lisp
+(pixel-scroll-precision-mode 1)
+#+end_src
+
+pulse effects for various actions:
+#+begin_src emacs-lisp
+(setq pulse-delay 0.05)
+(setq pulse-iterations 15)
+#+end_src
+
+transparency/blur
+#+begin_src emacs-lisp
+(set-frame-parameter nil 'alpha-background 95)
+#+end_src
+
+window start position and size
+#+begin_src emacs-lisp
+(setq default-frame-alist
+      '((width . 0.9)
+        (height . 0.25)))
+#+end_src
 * org mode configs
 
 #+begin_src emacs-lisp

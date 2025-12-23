@@ -1,7 +1,18 @@
-(setq doom-font (font-spec :size 16 :family "Iosevka"))
+(setq doom-font (font-spec :size 18 :family "Iosevka"))
 (setq doom-theme 'doom-one)
 
 (setq display-line-numbers-type t)
+
+(pixel-scroll-precision-mode 1)
+
+(setq pulse-delay 0.05)
+(setq pulse-iterations 15)
+
+(set-frame-parameter nil 'alpha-background 95)
+
+(setq default-frame-alist
+      '((width . 0.9)
+        (height . 0.25)))
 
 (setq org-directory "~/org/")
 
