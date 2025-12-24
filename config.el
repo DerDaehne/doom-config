@@ -1,5 +1,5 @@
 (setq doom-font (font-spec :size 18 :family "Iosevka"))
-(setq doom-theme 'doom-one)
+(setq doom-theme 'doom-outrun-electric)
 
 (setq display-line-numbers-type t)
 
@@ -125,3 +125,8 @@ With prefix arg (C-u), prompt for different options."
         :desc "Build only" "b" #'my/nixos-build
         :desc "Flake check" "c" #'my/nixos-flake-check
         :desc "Flake update" "u" #'my/nixos-flake-update))
+
+(use-package! daemons
+  :commands (daemons daemons-status)
+  :config
+  (setq daemons-always-sudo t))
