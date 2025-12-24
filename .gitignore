@@ -1,0 +1,21 @@
+# Generated from config.org (literate config)
+config.el
+
+# Compiled files
+*.elc
+
+# Local customizations
+.local/
+
+# Backup files
+*~
+\#*\#
+.\#*
+
+# Doom cache and temporary files
+.cache/
+.backups/
+
+# OS specific
+.DS_Store
+Thumbs.db
