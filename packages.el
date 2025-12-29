@@ -54,3 +54,4 @@
 ;; (unpin! t)
 
 (package! daemons)
+(package! envrc)

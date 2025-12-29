@@ -13,6 +13,7 @@
 - [[#nixos-specific-config-to-rebuild-and-stuff][NixOS specific config to rebuild and stuff]]
 - [[#misc][Misc]]
   - [[#daemons-systemd-unit-management][daemons (systemd unit management)]]
+  - [[#envrc][envrc]]
 
 * font, theme and visuals
 
@@ -229,4 +230,11 @@ With prefix arg (C-u), prompt for different options."
   :commands (daemons daemons-status)
   :config
   (setq daemons-always-sudo t))
+#+end_src
+
+** envrc
+#+begin_src emacs-lisp
+(use-package! envrc
+  :config
+(envrc-global-mode))
 #+end_src
