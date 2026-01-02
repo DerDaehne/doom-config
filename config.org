@@ -5,7 +5,6 @@
   - [[#animations-cursor-and-scroll-settings-for-a-fresher-ui][animations, cursor and scroll settings for a fresher ui]]
 - [[#org-mode-configs][org mode configs]]
   - [[#font-configs][font configs]]
-  - [[#settings-for-source-code-blocks][Settings for source code blocks.]]
   - [[#emphasis-markers][emphasis markers]]
   - [[#inline-images][inline images]]
   - [[#links][links]]
@@ -41,7 +40,7 @@
 
 #+begin_src emacs-lisp
 (setq doom-font (font-spec :size 18 :family "Iosevka"))
-(setq doom-theme 'doom-outrun-electric)
+(setq doom-theme 'modus-operandi-tinted)
 #+end_src
 
 
@@ -105,13 +104,6 @@ This will customize the org mode headers to be slightly bigger than normal text.
 
 #+end_src
 
-** Settings for source code blocks.
-#+begin_src emacs-lisp
-(custom-set-faces!
-'(org-block-begin-line :background "#1c1f24" :extend t)
-'(org-block :background "#23272e" :extend t)
-'(org-block-end-line :background "#1c1f24" :extend t))
-#+end_src
 
 ** emphasis markers
 #+begin_src emacs-lisp
