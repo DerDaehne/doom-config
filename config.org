@@ -13,6 +13,8 @@
 - [[#misc][Misc]]
   - [[#daemons-systemd-unit-management][daemons (systemd unit management)]]
   - [[#envrc][envrc]]
+  - [[#indentation-configs][indentation configs]]
+  - [[#garbage-colletion-tuning][garbage colletion tuning]]
 
 * font, theme and visuals
 
@@ -40,7 +42,7 @@
 
 #+begin_src emacs-lisp
 (setq doom-font (font-spec :size 18 :family "Iosevka"))
-(setq doom-theme 'modus-operandi-tinted)
+(setq doom-theme 'ef-day)
 #+end_src
 
 
@@ -70,16 +72,11 @@ pulse effects for various actions:
 (setq pulse-iterations 15)
 #+end_src
 
-transparency/blur
-#+begin_src emacs-lisp
-(set-frame-parameter nil 'alpha-background 95)
-#+end_src
-
 window start position and size
 #+begin_src emacs-lisp
 (setq default-frame-alist
       '((width . 0.9)
-        (height . 0.25)))
+        (height . 0.85)))
 #+end_src
 * org mode configs
 
@@ -124,7 +121,6 @@ This will customize the org mode headers to be slightly bigger than normal text.
 
 ** org-modern configs
 #+begin_src emacs-lisp
-(setq org-modern-table-horizontal 1)
 (setq org-modern-table-horizontal t)
 #+end_src
 
@@ -230,3 +226,24 @@ With prefix arg (C-u), prompt for different options."
   :config
 (envrc-global-mode))
 #+end_src
+
+** indentation configs
+#+begin_src emacs-lisp
+(setq-default tab-width 4)
+(setq-default indent-tabs-mode nil)
+#+end_src
+
+** garbage colletion tuning
+
+  #+begin_src emacs-lisp
+  ;; Increase GC threshold during startup
+  (setq gc-cons-threshold most-positive-fixnum)
+
+  ;; Reset it after startup, but keep it higher than default
+  (add-hook 'emacs-startup-hook
+    (lambda ()
+      (setq gc-cons-threshold (* 100 1024 1024)))) ;; 100MB
+
+  ;; GC when idle
+  (run-with-idle-timer 5 t #'garbage-collect)
+  #+end_src

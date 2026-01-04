@@ -55,3 +55,5 @@
 
 (package! daemons)
 (package! envrc)
+(package! ef-themes)
+(package! org-modern)
