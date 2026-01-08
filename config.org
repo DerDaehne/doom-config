@@ -72,12 +72,6 @@ pulse effects for various actions:
 (setq pulse-iterations 15)
 #+end_src
 
-window start position and size
-#+begin_src emacs-lisp
-(setq default-frame-alist
-      '((width . 0.9)
-        (height . 0.85)))
-#+end_src
 * org mode configs
 
 #+begin_src emacs-lisp
