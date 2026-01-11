@@ -11,10 +11,10 @@
   - [[#org-modern-configs][org-modern configs]]
 - [[#nixos-specific-config-to-rebuild-and-stuff][NixOS specific config to rebuild and stuff]]
 - [[#misc][Misc]]
-  - [[#daemons-systemd-unit-management][daemons (systemd unit management)]]
   - [[#envrc][envrc]]
   - [[#indentation-configs][indentation configs]]
   - [[#garbage-colletion-tuning][garbage colletion tuning]]
+  - [[#shell-config][shell config]]
 
 * font, theme and visuals
 
@@ -206,13 +206,6 @@ With prefix arg (C-u), prompt for different options."
 #+end_src
 
 * Misc
-** daemons (systemd unit management)
-#+begin_src emacs-lisp
-(use-package! daemons
-  :commands (daemons daemons-status)
-  :config
-  (setq daemons-always-sudo t))
-#+end_src
 
 ** envrc
 #+begin_src emacs-lisp
@@ -241,3 +234,10 @@ With prefix arg (C-u), prompt for different options."
   ;; GC when idle
   (run-with-idle-timer 5 t #'garbage-collect)
   #+end_src
+
+** shell config
+Since my user's default shell is nushell, we explicitly need to set the shell for emacs to use.
+#+begin_src emacs-lisp
+(setq explicit-shell-file-name "/run/current-system/sw/bin/bash")
+(setq shell-file-name "bash")
+#+end_src

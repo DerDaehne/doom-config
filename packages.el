@@ -53,7 +53,6 @@
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;; (unpin! t)
 
-(package! daemons)
 (package! envrc)
 (package! ef-themes)
 (package! org-modern)
