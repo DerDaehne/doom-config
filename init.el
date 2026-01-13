@@ -44,10 +44,10 @@
        ophints           ; highlight the region an operation acts on
        (popup +defaults)   ; tame sudden yet inevitable temporary windows
        ;; smooth-scroll     ; So smooth you won't believe it's not butter
-       tabs              ; a tab bar for Emacs
+       ;;tabs              ; a tab bar for Emacs (disabled for performance)
        ;;treemacs          ; a project drawer, like neotree but cooler
        ;;unicode           ; extended unicode support for various languages
-       (vc-gutter +pretty) ; vcs diff in the fringe
+       vc-gutter         ; vcs diff in the fringe (removed +pretty for performance)
        vi-tilde-fringe   ; fringe tildes to mark beyond EOB
        ;;window-select     ; visually switch windows
        workspaces        ; tab emulation, persistence & separate workspaces
