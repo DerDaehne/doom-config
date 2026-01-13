@@ -15,6 +15,8 @@
   - [[#indentation-configs][indentation configs]]
   - [[#garbage-colletion-tuning][garbage colletion tuning]]
   - [[#shell-config][shell config]]
+- [[#programmiersprachen][Programmiersprachen]]
+  - [[#groovy][Groovy]]
 
 * font, theme and visuals
 
@@ -240,4 +242,20 @@ Since my user's default shell is nushell, we explicitly need to set the shell fo
 #+begin_src emacs-lisp
 (setq explicit-shell-file-name "/run/current-system/sw/bin/bash")
 (setq shell-file-name "bash")
+#+end_src
+
+* Programmiersprachen
+
+** Groovy
+Konfiguration für Groovy mit LSP-Support über eglot. Dies ermöglicht Autocomplete, Jump-to-Definition, Dokumentation und weitere IDE-Features für Groovy-Dateien.
+
+Voraussetzung: Der Groovy Language Server muss installiert sein (z.B. via ~npm install -g groovy-language-server~ oder in der NixOS-Config).
+
+#+begin_src emacs-lisp
+;; Groovy LSP configuration
+(after! eglot
+  (add-to-list 'eglot-server-programs
+               '(groovy-mode . ("groovy-language-server"))))
+
+(add-hook 'groovy-mode-hook 'eglot-ensure)
 #+end_src
