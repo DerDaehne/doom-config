@@ -15,6 +15,8 @@
   - [[#indentation-configs][indentation configs]]
   - [[#garbage-colletion-tuning][garbage colletion tuning]]
   - [[#modeline-performance-optimization][modeline performance optimization]]
+  - [[#lsp-performance-optimization][lsp performance optimization]]
+  - [[#which-key-configuration][which-key configuration]]
   - [[#shell-config][shell config]]
 - [[#programmiersprachen][Programmiersprachen]]
   - [[#groovy][Groovy]]
@@ -253,6 +255,48 @@ Let's optimize it by simplifying and reducing update frequency:
   (setq doom-modeline-checker-simple-format t)
   (setq doom-modeline-vcs-max-length 20)
   (setq doom-modeline-buffer-modification-icon nil))
+#+end_src
+
+** lsp performance optimization
+
+emacs-lsp-booster is a wrapper that converts JSON messages from LSP servers
+directly to elisp bytecode at high speed. This provides massive performance improvements
+for LSP (Language Server Protocol) functionality.
+
+#+begin_src emacs-lisp
+(after! lsp-mode
+  ;; Use emacs-lsp-booster for performance
+  (defun lsp-booster--advice-json-parse (old-fn &rest args)
+    "Try to parse with emacs-lsp-booster, fallback to original parser."
+    (or
+     (when (executable-find "emacs-lsp-booster")
+       (condition-case nil
+           (apply old-fn args)
+         (error nil)))
+     (apply old-fn args)))
+
+  (advice-add (if (progn (require 'json)
+                         (fboundp 'json-parse-buffer))
+                  'json-parse-buffer
+                'json-read)
+              :around
+              #'lsp-booster--advice-json-parse)
+
+  ;; Additional LSP performance settings
+  (setq lsp-use-plists t)              ; Use plists for performance
+  (setq lsp-log-io nil)                 ; Disable logging for speed
+  (setq lsp-idle-delay 0.5)             ; Faster responses
+  (setq lsp-enable-file-watchers nil))  ; Disable file watchers in large projects
+#+end_src
+
+** which-key configuration
+
+which-key shows available keybindings after you start typing a command.
+Let's make it appear faster for better responsiveness:
+
+#+begin_src emacs-lisp
+(after! which-key
+  (setq which-key-idle-delay 0.3))  ; Show keybindings after 0.3s instead of 1.0s
 #+end_src
 
 ** shell config
