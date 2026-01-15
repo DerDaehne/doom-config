@@ -309,15 +309,21 @@ Since my user's default shell is nushell, we explicitly need to set the shell fo
 * Programmiersprachen
 
 ** Groovy
-Konfiguration für Groovy mit LSP-Support über eglot. Dies ermöglicht Autocomplete, Jump-to-Definition, Dokumentation und weitere IDE-Features für Groovy-Dateien.
+Konfiguration für Groovy mit LSP-Support über lsp-mode. Dies ermöglicht Autocomplete, Jump-to-Definition, Dokumentation und weitere IDE-Features für Groovy-Dateien.
 
-Voraussetzung: Der Groovy Language Server muss installiert sein (z.B. via ~npm install -g groovy-language-server~ oder in der NixOS-Config).
+Voraussetzung: Der Groovy Language Server muss installiert sein
 
 #+begin_src emacs-lisp
 ;; Groovy LSP configuration
-(after! eglot
-  (add-to-list 'eglot-server-programs
-               '(groovy-mode . ("groovy-language-server"))))
+(use-package! lsp-groovy
+  :after lsp-mode
+  :config
+  ;; IO Logging aktivieren für Debugging
+  ;; (setq lsp-log-io t)
 
-(add-hook 'groovy-mode-hook 'eglot-ensure)
+  ;; Classpath für Groovy LSP
+  ;; Diese custom LSP-Version unterstützt /** für rekursive Suche
+  (setq lsp-groovy-classpath [".m2/**" "/home/david/.m2/**"]))
+
+(add-hook 'groovy-mode-hook #'lsp-deferred)
 #+end_src
